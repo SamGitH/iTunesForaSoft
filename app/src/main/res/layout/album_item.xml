@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ai_iv"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/image_album_size_128"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/man"
+            />
+        <TextView
+            android:id="@+id/ai_tv_album_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ai_iv"
+            tools:text="Album name"
+            />
+        <TextView
+            android:id="@+id/ai_tv_artist_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ai_tv_album_name"
+            app:layout_constraintStart_toEndOf="@id/ai_iv"
+            tools:text="Artist name"
+            />
+        <TextView
+            android:id="@+id/ai_tv_genre_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/ai_tv_artist_name"
+            app:layout_constraintStart_toEndOf="@id/ai_iv"
+            tools:text="Rock"/>
+        <TextView
+            android:id="@+id/ai_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/ai_tv_genre_name"
+            app:layout_constraintStart_toEndOf="@id/ai_tv_genre_name"
+            tools:text="1997"
+            />
+    </android.support.constraint.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
