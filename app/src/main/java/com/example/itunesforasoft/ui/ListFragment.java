@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.itunesforasoft.MainActivity;
 import com.example.itunesforasoft.R;
 import com.example.itunesforasoft.models.Album;
 
@@ -22,50 +24,17 @@ public class ListFragment extends Fragment {
 
     private static final String ALBUM_LIST = "ALBUM_LIST";
 
-    List<Album> albumList= new ArrayList<Album>();
-
-    void createAlbumList(){
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-        albumList.add(new Album("Sam",
-                "Easy life",
-                "https://i.imgur.com/KLaSJHQ.jpg",
-                "1999",
-                "Rock"));
-    }
-
-
-    private final AlbumAdapter albumAdapter = new AlbumAdapter(albumList, new AlbumAdapter.Listener() {//new ArrayList<Album>()
+    private final AlbumAdapter albumAdapter = new AlbumAdapter(MainActivity.albumList, new AlbumAdapter.Listener() {//new ArrayList<Album>()
         @Override
         public void onAlbumClicked(Album album) {
+            Bundle arg = new Bundle();
+            Fragment albumFragment = new AlbumFragment();
+            arg.putParcelable(AlbumFragment.ALBUM, album);
+            albumFragment.setArguments(arg);
+
+            //FragmentManager fragmentManager = getFragmentManager();
+            getFragmentManager().beginTransaction().replace(R.id.activity_main, albumFragment).commit();
+
 //            Intent intent = new Intent(ReportsActivity.this, ReportActivity.class);
 //            intent.putExtra("Report", report);
 //            startActivity(intent);
@@ -81,7 +50,6 @@ public class ListFragment extends Fragment {
     @Override
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
 
-        createAlbumList();
         RecyclerView recyclerView = view.findViewById(R.id.fl_rv);
         recyclerView.setAdapter(albumAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
