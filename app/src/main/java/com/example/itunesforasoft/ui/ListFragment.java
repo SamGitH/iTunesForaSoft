@@ -2,9 +2,12 @@ package com.example.itunesforasoft.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,13 +19,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.itunesforasoft.MainActivity;
 import com.example.itunesforasoft.R;
 import com.example.itunesforasoft.models.Album;
+import com.example.itunesforasoft.network.Search;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment implements View.OnClickListener {
 
-    private static final String ALBUM_LIST = "ALBUM_LIST";
+    public static final String ALBUM_LIST = "ALBUM_LIST";
+    //private List<Album> albumList = new ArrayList<>();
+
+    private final int BUT_SEARCH = R.id.fl_bt;
+
+    private String albumKey;
+//    private Search search;
+
+    private EditText editText;
+    private RecyclerView recyclerView;
+    private Button searchButton;
 
     private final AlbumAdapter albumAdapter = new AlbumAdapter(MainActivity.albumList, new AlbumAdapter.Listener() {//new ArrayList<Album>()
         @Override
@@ -31,13 +45,8 @@ public class ListFragment extends Fragment {
             Fragment albumFragment = new AlbumFragment();
             arg.putParcelable(AlbumFragment.ALBUM, album);
             albumFragment.setArguments(arg);
-
             //FragmentManager fragmentManager = getFragmentManager();
             getFragmentManager().beginTransaction().replace(R.id.activity_main, albumFragment).commit();
-
-//            Intent intent = new Intent(ReportsActivity.this, ReportActivity.class);
-//            intent.putExtra("Report", report);
-//            startActivity(intent);
         }
     });
 
@@ -49,13 +58,41 @@ public class ListFragment extends Fragment {
 
     @Override
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
-
-        RecyclerView recyclerView = view.findViewById(R.id.fl_rv);
-        recyclerView.setAdapter(albumAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        Bundle args = getArguments();
+//        int size = args.getInt(ALBUM_LIST);
+//        for (int i = 0; i < size; i++) {
+//            Album album = args.getParcelable(ALBUM_LIST);
+//            albumList.add(album);
+//
+//        }
+        findViews(view);
+        bind();
 //        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
 //        recyclerView.setLayoutManager(mLayoutManager);
 
     }
 
+    private void findViews(View view){
+        editText = view.findViewById(R.id.fl_et);
+        recyclerView = view.findViewById(R.id.fl_rv);
+        searchButton = view.findViewById(BUT_SEARCH);
+    }
+
+    private void bind (){
+        //editText.setText(MainActivity.ms);
+        recyclerView.setAdapter(albumAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        searchButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == BUT_SEARCH) {
+            albumKey = editText.getText().toString();
+            albumKey = albumKey.replace("\n", "");
+            albumKey = albumKey.replace(" ", "+");
+            Search.loadAlbums(albumKey);
+            albumAdapter.notifyDataSetChanged();
+        }
+    }
 }

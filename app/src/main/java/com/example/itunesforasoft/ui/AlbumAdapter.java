@@ -55,8 +55,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         private final TextView collectionName;
         private final TextView artistName;
-        private final TextView releaseDate;
-        private final TextView primaryGenreName;
+        private final TextView primaryGenreNameAndDate;
         private final ImageView albumArt;
         private Album album;
 
@@ -71,17 +70,16 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
             collectionName = itemView.findViewById(R.id.ai_tv_album_name);
             artistName = itemView.findViewById(R.id.ai_tv_artist_name);
-            releaseDate = itemView.findViewById(R.id.ai_tv_date);
-            primaryGenreName =itemView.findViewById(R.id.ai_tv_genre_name);
+            primaryGenreNameAndDate =itemView.findViewById(R.id.ai_tv_genre_name_and_date);
             albumArt = itemView.findViewById(R.id.ai_iv);
+
         }
 
         private void bind(@NonNull Album album) {
             this.album = album;
             collectionName.setText(album.collectionName);
             artistName.setText(album.artistName);
-            releaseDate.setText(album.releaseDate);
-            primaryGenreName.setText(album.primaryGenreName);
+            primaryGenreNameAndDate.setText(album.primaryGenreName + ", " + album.releaseDate);
             Picasso.get().load(album.artworkUrl100).into(albumArt);
         }
 

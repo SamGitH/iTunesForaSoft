@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    android:id="@+id/fragment_list"
+<android.support.constraint.ConstraintLayout android:id="@+id/fragment_list"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="@dimen/spacing_small_8"
+    android:background="@drawable/main_background">
     <EditText
         android:id="@+id/fl_et"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:lines="1"
         android:hint="@string/fl_et_search"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/fl_bt"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/spacing_small_8"
+        android:padding="@dimen/spacing_small_8"
+        android:background="@drawable/item_background"
+        />
+    <Button
+        android:id="@+id/fl_bt"
+        android:layout_width="@dimen/button_size_44"
+        android:layout_height="@dimen/button_size_44"
+        app:layout_constraintTop_toTopOf="@id/fl_et"
+        app:layout_constraintStart_toEndOf="@id/fl_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/fl_et"
+        android:layout_margin="@dimen/spacing_small_8"
+        android:background="@drawable/search_button"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fl_rv"
@@ -23,6 +39,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="@dimen/spacing_small_8"
+
         />
+    <TextView
+        android:id="@+id/fl_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fl_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Ничего не найдено"
+        android:layout_marginTop="@dimen/spacing_normal_16"/>
 
 </android.support.constraint.ConstraintLayout>

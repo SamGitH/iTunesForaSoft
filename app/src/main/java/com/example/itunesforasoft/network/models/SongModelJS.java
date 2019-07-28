@@ -1,28 +1,37 @@
-package com.example.itunesforasoft.models;
+package com.example.itunesforasoft.network.models;
 
-public class AlbumModelJS {
-
+public class SongModelJS {
     private String wrapperType;
-    private String collectionType;
+    private String kind;
     private Integer artistId;
     private Integer collectionId;
-    private Integer amgArtistId;
+    private Integer trackId;
     private String artistName;
     private String collectionName;
+    private String trackName;
     private String collectionCensoredName;
+    private String trackCensoredName;
     private String artistViewUrl;
     private String collectionViewUrl;
+    private String trackViewUrl;
+    private String previewUrl;
+    private String artworkUrl30;
     private String artworkUrl60;
     private String artworkUrl100;
-    private Double collectionPrice;
+    private float collectionPrice;
+    private float trackPrice;
+    private String releaseDate;
     private String collectionExplicitness;
+    private String trackExplicitness;
+    private Integer discCount;
+    private Integer discNumber;
     private Integer trackCount;
-    private String copyright;
+    private Integer trackNumber;
+    private Integer trackTimeMillis;
     private String country;
     private String currency;
-    private String releaseDate;
     private String primaryGenreName;
-    private String contentAdvisoryRating;
+    private boolean isStreamable;
 
     public String getWrapperType() {
         return wrapperType;
@@ -32,12 +41,12 @@ public class AlbumModelJS {
         this.wrapperType = wrapperType;
     }
 
-    public String getCollectionType() {
-        return collectionType;
+    public String getKind() {
+        return kind;
     }
 
-    public void setCollectionType(String collectionType) {
-        this.collectionType = collectionType;
+    public void setKind(String kind) {
+        this.kind = kind;
     }
 
     public Integer getArtistId() {
@@ -56,12 +65,12 @@ public class AlbumModelJS {
         this.collectionId = collectionId;
     }
 
-    public Integer getAmgArtistId() {
-        return amgArtistId;
+    public Integer getTrackId() {
+        return trackId;
     }
 
-    public void setAmgArtistId(Integer amgArtistId) {
-        this.amgArtistId = amgArtistId;
+    public void setTrackId(Integer trackId) {
+        this.trackId = trackId;
     }
 
     public String getArtistName() {
@@ -80,12 +89,28 @@ public class AlbumModelJS {
         this.collectionName = collectionName;
     }
 
+    public String getTrackName() {
+        return trackName;
+    }
+
+    public void setTrackName(String trackName) {
+        this.trackName = trackName;
+    }
+
     public String getCollectionCensoredName() {
         return collectionCensoredName;
     }
 
     public void setCollectionCensoredName(String collectionCensoredName) {
         this.collectionCensoredName = collectionCensoredName;
+    }
+
+    public String getTrackCensoredName() {
+        return trackCensoredName;
+    }
+
+    public void setTrackCensoredName(String trackCensoredName) {
+        this.trackCensoredName = trackCensoredName;
     }
 
     public String getArtistViewUrl() {
@@ -104,6 +129,30 @@ public class AlbumModelJS {
         this.collectionViewUrl = collectionViewUrl;
     }
 
+    public String getTrackViewUrl() {
+        return trackViewUrl;
+    }
+
+    public void setTrackViewUrl(String trackViewUrl) {
+        this.trackViewUrl = trackViewUrl;
+    }
+
+    public String getPreviewUrl() {
+        return previewUrl;
+    }
+
+    public void setPreviewUrl(String previewUrl) {
+        this.previewUrl = previewUrl;
+    }
+
+    public String getArtworkUrl30() {
+        return artworkUrl30;
+    }
+
+    public void setArtworkUrl30(String artworkUrl30) {
+        this.artworkUrl30 = artworkUrl30;
+    }
+
     public String getArtworkUrl60() {
         return artworkUrl60;
     }
@@ -120,12 +169,28 @@ public class AlbumModelJS {
         this.artworkUrl100 = artworkUrl100;
     }
 
-    public Double getCollectionPrice() {
+    public float getCollectionPrice() {
         return collectionPrice;
     }
 
-    public void setCollectionPrice(Double collectionPrice) {
+    public void setCollectionPrice(float collectionPrice) {
         this.collectionPrice = collectionPrice;
+    }
+
+    public float getTrackPrice() {
+        return trackPrice;
+    }
+
+    public void setTrackPrice(float trackPrice) {
+        this.trackPrice = trackPrice;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
     public String getCollectionExplicitness() {
@@ -136,6 +201,30 @@ public class AlbumModelJS {
         this.collectionExplicitness = collectionExplicitness;
     }
 
+    public String getTrackExplicitness() {
+        return trackExplicitness;
+    }
+
+    public void setTrackExplicitness(String trackExplicitness) {
+        this.trackExplicitness = trackExplicitness;
+    }
+
+    public Integer getDiscCount() {
+        return discCount;
+    }
+
+    public void setDiscCount(Integer discCount) {
+        this.discCount = discCount;
+    }
+
+    public Integer getDiscNumber() {
+        return discNumber;
+    }
+
+    public void setDiscNumber(Integer discNumber) {
+        this.discNumber = discNumber;
+    }
+
     public Integer getTrackCount() {
         return trackCount;
     }
@@ -144,12 +233,20 @@ public class AlbumModelJS {
         this.trackCount = trackCount;
     }
 
-    public String getCopyright() {
-        return copyright;
+    public Integer getTrackNumber() {
+        return trackNumber;
     }
 
-    public void setCopyright(String copyright) {
-        this.copyright = copyright;
+    public void setTrackNumber(Integer trackNumber) {
+        this.trackNumber = trackNumber;
+    }
+
+    public Integer getTrackTimeMillis() {
+        return trackTimeMillis;
+    }
+
+    public void setTrackTimeMillis(Integer trackTimeMillis) {
+        this.trackTimeMillis = trackTimeMillis;
     }
 
     public String getCountry() {
@@ -168,14 +265,6 @@ public class AlbumModelJS {
         this.currency = currency;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
     public String getPrimaryGenreName() {
         return primaryGenreName;
     }
@@ -184,11 +273,11 @@ public class AlbumModelJS {
         this.primaryGenreName = primaryGenreName;
     }
 
-    public String getContentAdvisoryRating() {
-        return contentAdvisoryRating;
+    public boolean isStreamable() {
+        return isStreamable;
     }
 
-    public void setContentAdvisoryRating(String contentAdvisoryRating) {
-        this.contentAdvisoryRating = contentAdvisoryRating;
+    public void setStreamable(boolean streamable) {
+        isStreamable = streamable;
     }
 }
