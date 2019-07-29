@@ -29,10 +29,14 @@ public class Search {
             @Override
             public void onResponse(Call<ItunesAlbumsModel> call, Response<ItunesAlbumsModel> response) {
                 for (AlbumModelJS albumModelJS : response.body().getResults()){
+                    String date = new String();//new
+                    for (int i = 0; i < 4; i++)
+                        date += albumModelJS.getReleaseDate().charAt(i);
+
                     albumList.add(new Album(albumModelJS.getArtistName(),
                             albumModelJS.getCollectionName(),
                             albumModelJS.getArtworkUrl100(),
-                            albumModelJS.getReleaseDate(),
+                            date,
                             albumModelJS.getPrimaryGenreName(),
                             albumModelJS.getTrackCount()));
                 }
@@ -55,6 +59,8 @@ public class Search {
             @Override
             public void onResponse(Call<ItunesSongsModel> call, Response<ItunesSongsModel> response) {
                 for (SongModelJS songModelJS : response.body().getResults()){
+                    Integer seconds = songModelJS.getTrackTimeMillis()/1000;//new
+                    String time;
                     songs.add(new Song( songModelJS.getTrackName(), songModelJS.getTrackNumber(), songModelJS.getTrackTimeMillis()));
                 }
             }

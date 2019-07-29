@@ -43,6 +43,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         public void onAlbumClicked(Album album) {
             Bundle arg = new Bundle();
             Fragment albumFragment = new AlbumFragment();
+            album.setSongs(Search.loadSongs(album.trackCount));//new
             arg.putParcelable(AlbumFragment.ALBUM, album);
             albumFragment.setArguments(arg);
             //FragmentManager fragmentManager = getFragmentManager();

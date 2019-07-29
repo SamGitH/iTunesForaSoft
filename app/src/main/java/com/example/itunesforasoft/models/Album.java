@@ -26,6 +26,10 @@ public class Album implements Parcelable {
         this.songs = songs;
     }
 
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
     public Album(String artistName, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount) {
         this.artistName = artistName;
         this.collectionName = collectionName;
