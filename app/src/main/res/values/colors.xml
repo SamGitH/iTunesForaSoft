@@ -9,8 +9,11 @@
     <color name="colorItemEnd">#C2D4E2</color>
 
     <color name="colorBlueGrey">#709EB9</color>
+    <color name="colorWhite">#00FFFFFF</color>
+    <color name="colorBlack">#000000</color>
 
     <color name="colorTexGrey">#686A6B</color>
+
 
 
 </resources>

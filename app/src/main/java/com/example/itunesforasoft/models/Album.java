@@ -28,10 +28,6 @@ public class Album implements Parcelable {
         this.songs = songs;
     }
 
-    public void setSongs(List<Song> songs) {
-        this.songs = songs;
-    }
-
     public Album(String artistName, Integer collectionId, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount) {
         this.artistName = artistName;
         this.collectionId = collectionId;
@@ -50,10 +46,10 @@ public class Album implements Parcelable {
         releaseDate = in.readString();
         primaryGenreName = in.readString();
         trackCount = in.readInt();
-        for (int i = 0; i < trackCount; i++){
-            Song song = in.readParcelable(Song.class.getClassLoader());
-            songs.add(song);
-        }
+//        for (int i = 0; i < trackCount; i++){
+//            Song song = in.readParcelable(Song.class.getClassLoader());
+//            songs.add(song);
+//        }
     }
 
     @Override
@@ -70,8 +66,8 @@ public class Album implements Parcelable {
         dest.writeString(releaseDate);
         dest.writeString(primaryGenreName);
         dest.writeInt(trackCount);
-        for (int i = 0; i < trackCount; i++)
-            dest.writeParcelable(songs.get(i),0);
+//        for (int i = 0; i < trackCount; i++)
+//            dest.writeParcelable(songs.get(i),0);
     }
 
     public static final Parcelable.Creator<Album> CREATOR = new Parcelable.Creator<Album>(){

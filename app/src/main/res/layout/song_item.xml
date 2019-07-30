@@ -16,14 +16,28 @@
         android:layout_margin="@dimen/spacing_small_8"
         >
         <TextView
-            android:id="@+id/si_song_name"
+            android:id="@+id/si_song_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/spacing_tiny_4"
+            android:layout_marginStart="@dimen/spacing_tiny_4"
+            android:layout_marginEnd="@dimen/spacing_large_24"
+            android:layout_marginBottom="@dimen/spacing_tiny_4"
+            tools:text="1"
+            />
+        <TextView
+            android:id="@+id/si_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/si_song_number"
             android:layout_margin="@dimen/spacing_tiny_4"
-            tools:text="1 Song name"
+            tools:text="Song name"
             />
         <TextView
             android:id="@+id/si_time"

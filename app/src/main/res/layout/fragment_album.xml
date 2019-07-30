@@ -73,15 +73,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_normal_16"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/fa_rv"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="@dimen/spacing_small_8"
+        android:paddingStart="@dimen/spacing_small_8"
+        android:paddingEnd="@dimen/spacing_small_8"
         tools:text="14 песен"
         />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fa_bt"
         android:layout_width="@dimen/button_size_64"
         android:layout_height="@dimen/button_size_64"
+
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        app:iconGravity="textEnd"
+        app:icon="@drawable/back_button"
+        app:backgroundTint="@color/colorWhite"
+        app:iconTint="@color/colorBlack"
+        app:iconSize="@dimen/button_size_64"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />

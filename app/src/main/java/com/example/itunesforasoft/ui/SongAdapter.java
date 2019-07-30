@@ -41,19 +41,22 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
 
     static final class SongViewHolder extends RecyclerView.ViewHolder {
 
+        private final TextView trackNumber;
         private final TextView songName;
         private final TextView time;
         private Song song;
 
         public SongViewHolder(@NonNull View itemView) {
             super(itemView);
+            trackNumber = itemView.findViewById(R.id.si_song_number);
             songName = itemView.findViewById(R.id.si_song_name);
             time = itemView.findViewById(R.id.si_time);
         }
 
         private void bind(@NonNull Song song) {
             this.song = song;
-            songName.setText(song.trackNumber + " " + song.trackName);
+            trackNumber.setText(song.trackNumber.toString());
+            songName.setText(song.trackName);
             time.setText(song.time);
         }
 

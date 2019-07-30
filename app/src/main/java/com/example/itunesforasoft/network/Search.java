@@ -44,16 +44,18 @@ public class Search {
                             albumModelJS.getArtworkUrl100(),
                             date,
                             albumModelJS.getPrimaryGenreName(),
-                            albumModelJS.getTrackCount(),
-                            new ArrayList<Song>()));
+                            albumModelJS.getTrackCount()));
                 }
-                ListFragment.setSearchInfo();
+                if (albumList.isEmpty())
+                    ListFragment.setSearchInfo(ListFragment.InfoText.NO_MATCH);
+                else
+                    ListFragment.setSearchInfo(ListFragment.InfoText.EMPTY);
                 albumAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFailure(Call<ItunesAlbumsModel> call, Throwable t) {
-
+                ListFragment.setSearchInfo(ListFragment.InfoText.INTERNET);
             }
         });
     }

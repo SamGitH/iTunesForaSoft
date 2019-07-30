@@ -5,7 +5,9 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/spacing_small_8"
+    android:paddingTop="@dimen/spacing_small_8"
+    android:paddingStart="@dimen/spacing_small_8"
+    android:paddingEnd="@dimen/spacing_small_8"
     android:background="@drawable/main_background">
     <EditText
         android:id="@+id/fl_et"
@@ -16,24 +18,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fl_bt"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/spacing_small_8"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginBottom="@dimen/spacing_small_8"
         android:padding="@dimen/spacing_small_8"
         android:background="@drawable/item_background"
         />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/fl_bt"
-        android:layout_width="@dimen/button_size_44"
-        android:layout_height="@dimen/button_size_44"
+        android:layout_width="@dimen/button_size_64"
+        android:layout_height="@dimen/button_size_64"
 
-        style="@style/Widget.MaterialComponents.Button.Icon"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        app:iconGravity="start"
         app:icon="@drawable/search_button"
-        android:backgroundTintMode="screen"
+        app:backgroundTint="@color/colorWhite"
+        app:iconTint="@color/colorBlack"
+        app:iconSize="@dimen/button_size_44"
 
         app:layout_constraintTop_toTopOf="@id/fl_et"
         app:layout_constraintStart_toEndOf="@id/fl_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/fl_et"
-        android:layout_margin="@dimen/spacing_small_8"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,8 +50,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_margin="@dimen/spacing_small_8"
-
+        android:layout_marginTop="@dimen/spacing_small_8"
+        android:layout_marginStart="@dimen/spacing_small_8"
+        android:layout_marginEnd="@dimen/spacing_small_8"
         />
     <TextView
         android:id="@+id/fl_tv"

@@ -1,13 +1,9 @@
 package com.example.itunesforasoft.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,9 +18,6 @@ import com.example.itunesforasoft.MainActivity;
 import com.example.itunesforasoft.R;
 import com.example.itunesforasoft.models.Album;
 import com.example.itunesforasoft.network.Search;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.itunesforasoft.MainActivity.albumList;
 //import static com.example.itunesforasoft.MainActivity.songs;
@@ -36,6 +28,12 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     //private List<Album> albumList = new ArrayList<>();
 
     private final int BUT_SEARCH = R.id.fl_bt;
+    public enum InfoText {
+        START,
+        EMPTY,
+        NO_MATCH,
+        INTERNET
+    }
     //private final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);;
 //    private Search search;
 
@@ -92,14 +90,27 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(albumAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchButton.setOnClickListener(this);
-        searchInfo.setText("Start search");
+        if (albumList.isEmpty())
+            setSearchInfo(InfoText.START);
+        else
+            setSearchInfo(InfoText.EMPTY);
     }
 
-    public static void setSearchInfo(){
-        if (albumList.isEmpty())
-            searchInfo.setText("No matches found");
-        else
-            searchInfo.setText("");
+    public static void setSearchInfo(InfoText info){
+        switch (info){
+            case START:
+                searchInfo.setText("Start search");
+                break;
+            case EMPTY:
+                searchInfo.setText("");
+                break;
+            case NO_MATCH:
+                searchInfo.setText("No matches found");
+                break;
+            case INTERNET:
+                searchInfo.setText("Failed to load data, check your internet connection");
+                break;
+        }
     }
 
     @Override
