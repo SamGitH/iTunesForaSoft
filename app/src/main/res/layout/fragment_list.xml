@@ -20,17 +20,22 @@
         android:padding="@dimen/spacing_small_8"
         android:background="@drawable/item_background"
         />
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/fl_bt"
         android:layout_width="@dimen/button_size_44"
         android:layout_height="@dimen/button_size_44"
+
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        app:icon="@drawable/search_button"
+        android:backgroundTintMode="screen"
+
         app:layout_constraintTop_toTopOf="@id/fl_et"
         app:layout_constraintStart_toEndOf="@id/fl_et"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/fl_et"
         android:layout_margin="@dimen/spacing_small_8"
-        android:background="@drawable/search_button"
         />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fl_rv"
         android:layout_width="match_parent"

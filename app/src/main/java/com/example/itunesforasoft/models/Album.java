@@ -9,6 +9,7 @@ import java.util.List;
 public class Album implements Parcelable {
 
     public String artistName;
+    public Integer collectionId;
     public String collectionName;
     public String artworkUrl100;
     public String releaseDate;
@@ -16,8 +17,9 @@ public class Album implements Parcelable {
     public Integer trackCount;
     public List <Song> songs;
 
-    public Album(String artistName, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount, ArrayList<Song> songs) {
+    public Album(String artistName, Integer collectionId, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount, ArrayList<Song> songs) {
         this.artistName = artistName;
+        this.collectionId = collectionId;
         this.collectionName = collectionName;
         this.artworkUrl100 = artworkUrl100;
         this.releaseDate = releaseDate;
@@ -30,8 +32,9 @@ public class Album implements Parcelable {
         this.songs = songs;
     }
 
-    public Album(String artistName, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount) {
+    public Album(String artistName, Integer collectionId, String collectionName, String artworkUrl100, String releaseDate, String primaryGenreName, Integer trackCount) {
         this.artistName = artistName;
+        this.collectionId = collectionId;
         this.collectionName = collectionName;
         this.artworkUrl100 = artworkUrl100;
         this.releaseDate = releaseDate;
@@ -41,6 +44,7 @@ public class Album implements Parcelable {
 
     public Album (Parcel in){
         artistName = in.readString();
+        collectionId = in.readInt();
         collectionName = in.readString();
         artworkUrl100 = in.readString();
         releaseDate = in.readString();
@@ -60,6 +64,7 @@ public class Album implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(artistName);
+        dest.writeInt(collectionId);
         dest.writeString(collectionName);
         dest.writeString(artworkUrl100);
         dest.writeString(releaseDate);

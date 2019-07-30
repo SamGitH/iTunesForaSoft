@@ -6,8 +6,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,26 +27,30 @@ import com.example.itunesforasoft.network.Search;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.itunesforasoft.MainActivity.albumList;
+//import static com.example.itunesforasoft.MainActivity.songs;
+
 public class ListFragment extends Fragment implements View.OnClickListener {
 
-    public static final String ALBUM_LIST = "ALBUM_LIST";
+//    public static final String ALBUM_LIST = "ALBUM_LIST";
     //private List<Album> albumList = new ArrayList<>();
 
     private final int BUT_SEARCH = R.id.fl_bt;
-
-    private String albumKey;
+    //private final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);;
 //    private Search search;
 
     private EditText editText;
     private RecyclerView recyclerView;
     private Button searchButton;
+    private static TextView searchInfo;
 
     private final AlbumAdapter albumAdapter = new AlbumAdapter(MainActivity.albumList, new AlbumAdapter.Listener() {//new ArrayList<Album>()
         @Override
         public void onAlbumClicked(Album album) {
+            //Search.loadSongs(album.collectionId);
             Bundle arg = new Bundle();
             Fragment albumFragment = new AlbumFragment();
-            album.setSongs(Search.loadSongs(album.trackCount));//new
+            //album.setSongs(songs);//new
             arg.putParcelable(AlbumFragment.ALBUM, album);
             albumFragment.setArguments(arg);
             //FragmentManager fragmentManager = getFragmentManager();
@@ -77,6 +84,7 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         editText = view.findViewById(R.id.fl_et);
         recyclerView = view.findViewById(R.id.fl_rv);
         searchButton = view.findViewById(BUT_SEARCH);
+        searchInfo = view.findViewById(R.id.fl_tv);
     }
 
     private void bind (){
@@ -84,16 +92,26 @@ public class ListFragment extends Fragment implements View.OnClickListener {
         recyclerView.setAdapter(albumAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchButton.setOnClickListener(this);
+        searchInfo.setText("Start search");
+    }
+
+    public static void setSearchInfo(){
+        if (albumList.isEmpty())
+            searchInfo.setText("No matches found");
+        else
+            searchInfo.setText("");
     }
 
     @Override
     public void onClick(View v) {
         if(v.getId() == BUT_SEARCH) {
+//            searchButton.startAnimation(animAlpha);
+            String albumKey;
             albumKey = editText.getText().toString();
             albumKey = albumKey.replace("\n", "");
             albumKey = albumKey.replace(" ", "+");
-            Search.loadAlbums(albumKey);
-            albumAdapter.notifyDataSetChanged();
+            Search.loadAlbums(albumKey, albumAdapter);
+//            albumAdapter.notifyDataSetChanged();
         }
     }
 }

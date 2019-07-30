@@ -7,18 +7,18 @@ public class Song implements Parcelable {
 
     public String trackName;
     public Integer trackNumber;
-    public Integer trackTimeMillis;
+    public String time;
 
-    public Song(String trackName, Integer trackNumber, Integer trackTimeMillis) {
+    public Song(String trackName, Integer trackNumber, String time) {
         this.trackName = trackName;
         this.trackNumber = trackNumber;
-        this.trackTimeMillis = trackTimeMillis;
+        this.time = time;
     }
 
     public Song(Parcel in){
         trackName = in.readString();
         trackNumber = in.readInt();
-        trackTimeMillis = in.readInt();
+        time = in.readString();
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Song implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(trackName);
         dest.writeInt(trackNumber);
-        dest.writeInt(trackTimeMillis);
+        dest.writeString(time);
     }
 
     public static final Parcelable.Creator<Song> CREATOR = new Parcelable.Creator<Song>() {

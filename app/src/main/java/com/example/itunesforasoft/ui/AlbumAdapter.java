@@ -38,10 +38,6 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
         viewHolder.bind(album);
     }
 
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
-    }
-
     public interface Listener{
         void onAlbumClicked(Album album);
     }

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     //public static String ms;
 
     public static ArrayList<Album> albumList = new ArrayList<>();
-    public ArrayList<Song> songs = new ArrayList<>();
+//    public static ArrayList<Song> songs = new ArrayList<>();
 
 //    void createAlbumList(){
 //
