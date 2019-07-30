@@ -20,39 +20,34 @@ import com.example.itunesforasoft.models.Album;
 import com.example.itunesforasoft.network.Search;
 
 import static com.example.itunesforasoft.MainActivity.albumList;
-//import static com.example.itunesforasoft.MainActivity.songs;
 
+//Фрагмент с листом альбомов
 public class ListFragment extends Fragment implements View.OnClickListener {
 
-//    public static final String ALBUM_LIST = "ALBUM_LIST";
-    //private List<Album> albumList = new ArrayList<>();
-
     private final int BUT_SEARCH = R.id.fl_bt;
-    public enum InfoText {
+    public enum InfoText {//Состояния информационной строки
         START,
         EMPTY,
         NO_MATCH,
         INTERNET
     }
-    //private final Animation animAlpha = AnimationUtils.loadAnimation(this, R.anim.alpha);;
-//    private Search search;
 
     private EditText editText;
     private RecyclerView recyclerView;
     private Button searchButton;
     private static TextView searchInfo;
 
-    private final AlbumAdapter albumAdapter = new AlbumAdapter(MainActivity.albumList, new AlbumAdapter.Listener() {//new ArrayList<Album>()
+    //Запускаем фрагмент с альбомом и передаём туда альбом
+    private final AlbumAdapter albumAdapter = new AlbumAdapter(MainActivity.albumList, new AlbumAdapter.Listener() {
         @Override
         public void onAlbumClicked(Album album) {
-            //Search.loadSongs(album.collectionId);
             Bundle arg = new Bundle();
             Fragment albumFragment = new AlbumFragment();
-            //album.setSongs(songs);//new
             arg.putParcelable(AlbumFragment.ALBUM, album);
             albumFragment.setArguments(arg);
-            //FragmentManager fragmentManager = getFragmentManager();
-            getFragmentManager().beginTransaction().replace(R.id.activity_main, albumFragment).commit();
+            if (getFragmentManager() != null) {
+                getFragmentManager().beginTransaction().replace(R.id.activity_main, albumFragment).commit();
+            }
         }
     });
 
@@ -64,18 +59,10 @@ public class ListFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onViewCreated(@Nullable View view, @Nullable Bundle savedInstanceState) {
-//        Bundle args = getArguments();
-//        int size = args.getInt(ALBUM_LIST);
-//        for (int i = 0; i < size; i++) {
-//            Album album = args.getParcelable(ALBUM_LIST);
-//            albumList.add(album);
-//
-//        }
-        findViews(view);
+        if (view != null) {
+            findViews(view);
+        }
         bind();
-//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(mLayoutManager);
-
     }
 
     private void findViews(View view){
@@ -86,7 +73,6 @@ public class ListFragment extends Fragment implements View.OnClickListener {
     }
 
     private void bind (){
-        //editText.setText(MainActivity.ms);
         recyclerView.setAdapter(albumAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchButton.setOnClickListener(this);
@@ -115,14 +101,13 @@ public class ListFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        //По нажатию на кнопку поиска собираем информацию из edittext парсим и передаём в loeder, для загрузки альбомов.
         if(v.getId() == BUT_SEARCH) {
-//            searchButton.startAnimation(animAlpha);
             String albumKey;
             albumKey = editText.getText().toString();
             albumKey = albumKey.replace("\n", "");
             albumKey = albumKey.replace(" ", "+");
             Search.loadAlbums(albumKey, albumAdapter);
-//            albumAdapter.notifyDataSetChanged();
         }
     }
 }

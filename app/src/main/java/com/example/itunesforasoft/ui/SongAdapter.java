@@ -1,5 +1,6 @@
 package com.example.itunesforasoft.ui;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,7 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.SongViewHolder
             time = itemView.findViewById(R.id.si_time);
         }
 
+        @SuppressLint("SetTextI18n")
         private void bind(@NonNull Song song) {
             this.song = song;
             trackNumber.setText(song.trackNumber.toString());

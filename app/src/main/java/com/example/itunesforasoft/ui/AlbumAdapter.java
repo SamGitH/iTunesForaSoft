@@ -1,5 +1,6 @@
 package com.example.itunesforasoft.ui;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,6 +72,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.AlbumViewHol
 
         }
 
+        @SuppressLint("SetTextI18n")
         private void bind(@NonNull Album album) {
             this.album = album;
             collectionName.setText(album.collectionName);

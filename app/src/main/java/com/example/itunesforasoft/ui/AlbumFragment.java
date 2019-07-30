@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,24 +14,24 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.itunesforasoft.MainActivity;
 import com.example.itunesforasoft.R;
 import com.example.itunesforasoft.models.Album;
 import com.example.itunesforasoft.models.Song;
 import com.example.itunesforasoft.network.Search;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
-//import static com.example.itunesforasoft.MainActivity.songs;
-
+// Фрагмент с альбомом и песнями
 public class AlbumFragment extends Fragment implements View.OnClickListener{
 
     public static final String ALBUM = "ALBUM";
     private Album album;
 
     private final int BUT_BACK = R.id.fa_bt;
-    public static final ArrayList <Song> songs = new ArrayList<>();
+    public static final ArrayList <Song> songs = new ArrayList<>();// Список песен, для текущего альбома
 
     private TextView collectionName;
     private TextView artistName;
@@ -45,10 +43,6 @@ public class AlbumFragment extends Fragment implements View.OnClickListener{
 
     private final SongAdapter songAdapter = new SongAdapter(songs);
 
-    //    private ScrollView scrollView;
-//    private static LinearLayout linearLayout;
-//    private static View itemSong;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,29 +50,29 @@ public class AlbumFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
 
         Bundle args = getArguments();
-        album = args.getParcelable(ALBUM);
-        Search.loadSongs(album.collectionId, songAdapter);
+        // Выгружаем альбом, полученный из фрагмента со списком альбомов
+        if (args != null) {
+            album = args.getParcelable(ALBUM);
+        }
+        // Загружаем список песен по id альбома
+        if (album != null) {
+            Search.loadSongs(album.collectionId, songAdapter);
+        }
         findViews(view);
         bind();
-
-//        View itemSongz = getLayoutInflater().inflate(R.layout.song_item, null);
-//        itemSong = itemSongz;
-//        text = args.getString(TEXT_KEY);
-//
-//        View layout = view.findViewById(R.id.aut_fragment);
-//        TextView textView = view.findViewById(R.id.aut_fragment_text);
-//
-//        textView.setText(text);
     }
 
     @Override
     public void onClick(View v) {
+        // По нажатию на кнопку «назад» возвращаемся к фрагменту со списком альбомов
         if(v.getId() == BUT_BACK) {
             Fragment listFragment = new ListFragment();
-            getFragmentManager().beginTransaction().replace(R.id.activity_main, listFragment).commit();
+            if (getFragmentManager() != null) {
+                getFragmentManager().beginTransaction().replace(R.id.activity_main, listFragment).commit();
+            }
         }
     }
 
@@ -87,8 +81,6 @@ public class AlbumFragment extends Fragment implements View.OnClickListener{
         artistName = view.findViewById(R.id.fa_tv_artist_name);
         primaryGenreNameAndDate = view.findViewById(R.id.fa_tv_genre_name_and_date);
         albumArt = view.findViewById(R.id.fa_iv);
-//        scrollView = view.findViewById(R.id.fa_sv);
-//        linearLayout = view.findViewById(R.id.fa_ll);
         trackCount = view.findViewById(R.id.fa_info);
         backButton = view.findViewById(BUT_BACK);
         recyclerView = view.findViewById(R.id.fa_rv);
@@ -113,15 +105,4 @@ public class AlbumFragment extends Fragment implements View.OnClickListener{
 
         backButton.setOnClickListener(this);
     }
-
-//    public static void bindSongs(){
-//        for (int i = 0; i < songs.size(); i++) {
-//            TextView songName = itemSong.findViewById(R.id.si_song_name);
-//            TextView time = itemSong.findViewById(R.id.si_time);
-//            songName.setText(songs.get(i).trackNumber + " " + songs.get(i).trackName);
-//            time.setText(songs.get(i).time);
-//            linearLayout.addView(itemSong);
-//        }
-//    }
-
 }
